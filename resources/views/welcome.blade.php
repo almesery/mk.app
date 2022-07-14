@@ -411,7 +411,7 @@
             <br />
             Remaining = <span style="color: green" id="remaining_counter">{{4 - $car->car_counter}}</span>
         </h1>
-        <h1 style="color: #fff" id="garage_is_full"  {!! $car->car_counter != 4 ? "style='display:none;'" : "" !!}>
+        <h1 style="color: #fff; {!! $car->car_counter != 4 ? "display:none;" : "" !!}" id="garage_is_full" >
             Garage is full
         </h1>
     </div>
