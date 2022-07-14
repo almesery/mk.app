@@ -463,7 +463,7 @@
                 method: "GET",
                 success: function (response) {
 
-                    if(response.counter == 4) {
+                    if(response.counter === 4) {
                         $("#garage_is_full").show();
                     } else{
                         $("#garage_is_full").hide();
