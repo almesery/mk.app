@@ -404,10 +404,15 @@
 <body>
 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
     <div style="position: fixed; top: 0; left: 50%;transform: translateX(-50%)">
-        <h1 style="color: #fff">
-            Garge
+        <h1 style="color: #fff" id="total_counter">
+            Garage
             <br />
             counter = <span style="color: green" id="counter">{{$car->car_counter}}</span>
+            <br />
+            Remaining = <span style="color: green" id="remaining_counter">{{4 - $car->car_counter}}</span>
+        </h1>
+        <h1 style="color: #fff" id="garage_is_full"  {!! $car->car_counter != 4 ? "style='display:none;'" : "" !!}>
+            Garage is full
         </h1>
     </div>
     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -458,7 +463,14 @@
                 method: "GET",
                 success: function (response) {
 
+                    if(response.counter == 4) {
+                        $("#garage_is_full").show();
+                    } else{
+                        $("#garage_is_full").hide();
+                    }
+
                     $('#counter').html(response.counter);
+                    $('#remaining_counter').html(4 - response.counter);
 
                     if(response.car_1 == 1) {
                         $('#car_1').removeClass("green").addClass("red");
